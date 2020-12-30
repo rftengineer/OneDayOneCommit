@@ -5,6 +5,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class StringUtilsForApacheTest {
@@ -78,24 +80,55 @@ public class StringUtilsForApacheTest {
 
     @ParameterizedTest
     @CsvSource({"1,eabcd"
-    , "-1,bcdea"
-    , "0,abcde"
+            , "-1,bcdea"
+            , "0,abcde"
     })
     @DisplayName("Rotate 예제, 양수,0,음수에 대한 케이스 모두 입력해서 확인")
     void apache_StringUtils_Method11_Rotate(int index, String value) {
         String a1 = "abcde";
-        assertThat(StringUtils.rotate(a1,index)).isEqualTo(value);
+        assertThat(StringUtils.rotate(a1, index)).isEqualTo(value);
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"","  "})
+    @ValueSource(strings = {"", "  "})
     void apache_StringUtils_Method12_IsWhiteSpace(String value) {
         assertThat(StringUtils.isWhitespace(value)).isTrue();
     }
 
     @ParameterizedTest
-    @CsvSource({ "abc,def,abcdef" , "abc,d ef,abcd ef"})
-    void apache_StringUtils_Method13_join(String value1, String value2, String expected){
+    @CsvSource({"abc,def,abcdef", "abc,d ef,abcd ef"})
+    void apache_StringUtils_Method13_join(String value1, String value2, String expected) {
         assertThat(StringUtils.join(value1, value2)).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @CsvSource({"abc,def,abc||def", "abc,d ef,abc||d ef"})
+    @DisplayName("Joining Test With Delimiter")
+    void apache_StringUtils_Method14_join(String value1, String value2, String expected) {
+        assertThat(StringUtils.join(Arrays.asList(value1, value2), "||")).isEqualTo(expected);
+    }
+
+    @Test
+    void apache_StringUtils_Method15_swapCase() {
+        String testCase = "aBcDeF";
+        assertThat(StringUtils.swapCase(testCase)).isEqualTo("AbCdEf");
+    }
+
+    @Test
+    void apache_StringUtils_Method16_upperCase() {
+        String testCase = "aBcDeF";
+        assertThat(StringUtils.upperCase(testCase)).isEqualTo("ABCDEF");
+    }
+
+    @Test
+    void apache_StringUtils_Method17_lowerCase() {
+        String testCase = "aBcDeF";
+        assertThat(StringUtils.lowerCase(testCase)).isEqualTo("abcdef");
+    }
+
+    @ParameterizedTest
+    @CsvSource({"Cat, cat", "DOG, dOG", "A, a"})
+    void apache_StringUtils_Method18_uncapitalize(String value, String expected) {
+        assertThat(StringUtils.uncapitalize(value)).isEqualTo(expected);
     }
 }
