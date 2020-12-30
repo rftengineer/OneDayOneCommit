@@ -2,6 +2,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -75,5 +76,26 @@ public class StringUtilsForApacheTest {
         assertThat(StringUtils.equals(a1, a2)).isTrue();
     }
 
+    @ParameterizedTest
+    @CsvSource({"1,eabcd"
+    , "-1,bcdea"
+    , "0,abcde"
+    })
+    @DisplayName("Rotate 예제, 양수,0,음수에 대한 케이스 모두 입력해서 확인")
+    void apache_StringUtils_Method11_Rotate(int index, String value) {
+        String a1 = "abcde";
+        assertThat(StringUtils.rotate(a1,index)).isEqualTo(value);
+    }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"","  "})
+    void apache_StringUtils_Method12_IsWhiteSpace(String value) {
+        assertThat(StringUtils.isWhitespace(value)).isTrue();
+    }
+
+    @ParameterizedTest
+    @CsvSource({ "abc,def,abcdef" , "abc,d ef,abcd ef"})
+    void apache_StringUtils_Method13_join(String value1, String value2, String expected){
+        assertThat(StringUtils.join(value1, value2)).isEqualTo(expected);
+    }
 }
