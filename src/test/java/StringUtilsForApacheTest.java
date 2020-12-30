@@ -131,4 +131,24 @@ public class StringUtilsForApacheTest {
     void apache_StringUtils_Method18_uncapitalize(String value, String expected) {
         assertThat(StringUtils.uncapitalize(value)).isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("truncate test, from idx 0 to maxWidth - 1")
+    void apache_StringUtils_Method19_truncate() {
+        String testCase = "abcdefghijklmnopqrstu";
+        assertThat(StringUtils.truncate(testCase,10)).isEqualTo("abcdefghij");
+    }
+
+    @Test
+    @DisplayName("truncate test, from idx 5 to maxWidth + 5 - 1")
+    void apache_StringUtils_Method20_truncate() {
+        String testCase = "abcdefghijklmnopqrstu";
+        assertThat(StringUtils.truncate(testCase,5,10)).isEqualTo("fghijklmno");
+    }
+
+    @Test
+    void apache_StringUtils_Method21_trimToEmpty() {
+        String testCase = "  ";
+        assertThat(StringUtils.trimToEmpty(testCase)).isEmpty();
+    }
 }
