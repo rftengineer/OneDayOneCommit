@@ -35,6 +35,5 @@ public class PathsAndFilesTest {
         Path path2 = Files.createDirectory(path);
         assertThat(path2).isEmptyDirectory();
         Files.deleteIfExists(path2);
-
     }
 }
