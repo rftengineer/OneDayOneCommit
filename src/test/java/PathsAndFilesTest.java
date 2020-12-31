@@ -63,4 +63,33 @@ public class PathsAndFilesTest {
         Path path = Paths.get("D:\\Code\\Java\\Library_Exercise\\src\\main\\resources\\Readme.md");
         assertThat(path.getRoot().toString()).isEqualTo("D:\\");
     }
+
+    @Test
+    void java7_isAbsolute_Test() {
+        Path path = Paths.get("D:\\Code\\Java\\Library_Exercise\\src\\main\\resources\\Readme.md");
+        assertThat(path.isAbsolute()).isTrue();
+    }
+
+    @Test
+    void java7_isAbsolute_Test2() {
+        Path path = Paths.get("src/test/resources");
+        assertThat(path.isAbsolute()).isFalse();
+    }
+
+    @Test
+    void java7_toAbsolute_Test() {
+        Path path = Paths.get("src/test/resources");
+        assertThat(path.toAbsolutePath().toString()).isEqualTo("D:\\Code\\Java\\Library_Exercise\\src\\test\\resources");
+    }
+
+    @Test
+    @DisplayName("Check how to use resolve method in Path")
+    void java7_resolve_Test() throws IOException {
+        Path path = Path.of("src/test/resources");
+        path = path.resolve("sample1.txt");
+
+        BufferedReader br = Files.newBufferedReader(path);
+
+        assertThat(br.readLine()).isEqualTo("Hello World!");
+    }
 }
