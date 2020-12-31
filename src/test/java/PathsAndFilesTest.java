@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
@@ -35,5 +36,31 @@ public class PathsAndFilesTest {
         Path path2 = Files.createDirectory(path);
         assertThat(path2).isEmptyDirectory();
         Files.deleteIfExists(path2);
+    }
+
+    @Test
+    void java7_getParentPath_Test() {
+        Path path = Paths.get("src/test/resources");
+        assertThat(path.getParent().getFileName().toString()).isEqualTo("test");
+    }
+
+    @Test
+    void java7_getNameCount_Test() {
+        Path path = Paths.get("src/test/resources");
+        assertThat(path.getNameCount()).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("getRoot가 Null이 나오는경우")
+    void java7_getRoot_Test() {
+        Path path = Paths.get("src/test/resources");
+        assertThat(path.getRoot()).isNull();
+    }
+
+    @Test
+    @DisplayName("Absolute Path를 써야 getRoot를 가짐")
+    void java7_getRoot_Test2() {
+        Path path = Paths.get("D:\\Code\\Java\\Library_Exercise\\src\\main\\resources\\Readme.md");
+        assertThat(path.getRoot().toString()).isEqualTo("D:\\");
     }
 }

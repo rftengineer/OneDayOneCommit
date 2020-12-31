@@ -151,4 +151,10 @@ public class StringUtilsForApacheTest {
         String testCase = "  ";
         assertThat(StringUtils.trimToEmpty(testCase)).isEmpty();
     }
+
+    @Test
+    void apache_StringUtils_Method22_reverse() {
+        String testCase = "abcdefg";
+        assertThat(StringUtils.reverse(testCase)).isEqualTo("gfedcba");
+    }
 }
