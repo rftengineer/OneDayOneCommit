@@ -1,10 +1,10 @@
-# 2020-12-30 To-Do
-
-
-
-# 2020-12-30 Done
-- CommonUtils library method Test (최소 10개)
-- Class 생성 없이 Junit Test로만 진행할 것
-
-# 2020-12-30 Fail
+# 2020-12-31 To-Do
 - Java 7 Paths, Files Test (최소 10개)
+- Jackson Test Code 테스트 (최소 10개 작성)
+- Commons-cli 코드 작성 (Test 방법 고민) 
+
+# 2020-12-31 Done
+- 
+
+# 2020-12-31 Fail
+- 
